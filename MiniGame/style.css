@@ -1,0 +1,1051 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff758f;
+    --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    --glass-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #4a4a4a;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-gradient);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    overflow-x: hidden;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#bankId,
+#accNumber,
+#drawAmount {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #ffcad4;
+    background: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+#drawAmount {
+    background-color: #f8f9fa;
+    color: #d81b60;
+    font-weight: bold;
+    border: none;
+    margin-bottom: 30px;
+}
+
+#bankId:focus,
+#accNumber:focus {
+    border-color: #d81b60;
+    box-shadow: 0 0 8px rgba(216, 27, 96, 0.2);
+    outline: none;
+}
+
+/* ── Background decor ──────────────────────────────── */
+.background-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.background-decor span {
+    position: absolute;
+    font-size: 20px;
+    animation: float 10s infinite linear;
+    opacity: 0.6;
+}
+
+.background-decor span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.background-decor span:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.background-decor span:nth-child(3) {
+    left: 70%;
+    animation-delay: 4s;
+}
+
+.background-decor span:nth-child(4) {
+    left: 90%;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* ── Layout ────────────────────────────────────────── */
+.container {
+    width: 100%;
+    padding: 20px;
+    max-width: 450px;
+}
+
+.box {
+    background: var(--glass-bg);
+    padding: 40px 30px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    color: #888;
+}
+
+/* ── Input & Buttons ───────────────────────────────── */
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ffe5ec;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(255, 77, 109, 0.2);
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+}
+
+.btn-draw {
+    position: relative;
+    background: linear-gradient(135deg, #ff4da6 0%, #ff758f 50%, #ff4da6 100%);
+    background-size: 200% auto;
+    color: white;
+    font-size: 1.2rem;
+    padding: 18px;
+    font-weight: 800;
+    border-radius: 50px;
+    /* Bo tròn hẳn cho sang */
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+    animation: pulse-pink 2s infinite;
+    /* Đổi tên animation để tránh trùng */
+}
+
+.btn-draw::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.5s;
+    animation: shine 3s infinite linear;
+}
+
+@keyframes pulse-pink {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(255, 77, 109, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 109, 0);
+    }
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    20% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.btn-draw:hover {
+    transform: translateY(-3px) scale(1.02);
+    background-position: right center;
+    box-shadow: 0 15px 30px rgba(255, 77, 109, 0.5);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #666;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ── Result & Leaderboard ──────────────────────────── */
+.result-box {
+    margin: 20px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d6a4f;
+    min-height: 40px;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+.leaderboard h2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+#ranking {
+    padding: 0;
+}
+
+#ranking li {
+    list-style: none;
+    background: white;
+    margin-bottom: 8px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+#ranking li:hover {
+    transform: scale(1.02);
+    background: #fff0f3;
+}
+
+/* Container của bảng xếp hạng */
+#ranking {
+    padding: 0;
+    margin: 0;
+}
+
+#ranking li {
+    list-style: none;
+    background: white;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 12px;
+
+    /* Cấu hình Flexbox quan trọng */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Đẩy tên sang trái, tiền sang phải */
+    gap: 8px;
+    /* Khoảng cách giữa các phần tử */
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    /* Chỉnh size chữ vừa vặn cho mobile */
+}
+
+/* Phần Tên: Ép không cho xuống dòng, nếu quá dài sẽ hiện dấu ... */
+#ranking b {
+    flex: 1;
+    /* Chiếm hết không gian còn lại */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    /* Giới hạn độ dài tên để nhường chỗ cho tiền */
+    color: #444;
+}
+
+/* Phần Tiền và Danh hiệu: Luôn nằm cùng một cụm bên phải */
+.rank-reward-group {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    /* Tuyệt đối không cho xuống dòng cụm này */
+    flex-shrink: 0;
+    /* Không cho phép cụm này bị co lại */
+}
+
+.rank-money {
+    font-weight: 700;
+    color: #ff4da6;
+    margin-right: 4px;
+}
+
+#ranking small {
+    font-size: 11px;
+    color: #ff79c6;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.leaderboard h2 {
+    text-align: center;
+    /* Căn giữa chữ */
+    display: block;
+    /* Đảm bảo nó chiếm hết chiều ngang */
+    width: 100%;
+    font-family: 'Dancing Script', cursive;
+    /* Nếu nàng muốn điệu đà */
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 20px 0;
+}
+
+#ranking small {
+    font-size: 10px !important;
+    letter-spacing: -0.2px;
+}
+
+#ranking li {
+    padding: 10px 12px !important;
+    /* Tăng nhẹ padding để mỗi dòng có không gian thở */
+    line-height: 1.4;
+    /* Giúp chữ không bị đè lên nhau */
+}
+
+#ranking b {
+    font-size: 14px;
+    /* Tên nàng thơ để 14px là vừa đẹp nhất */
+    color: #333;
+    /* Màu xám đậm giúp chữ nổi trên nền trắng */
+}
+
+.rank-money {
+    font-size: 13px;
+    /* Số tiền nhỏ hơn tên một chút để phân cấp thông tin */
+    font-weight: 700;
+}
+
+/* Phóng to toàn bộ khu vực bảng xếp hạng */
+.leaderboard {
+    margin-top: 25px;
+    padding: 10px 5px;
+    /* Tạo khoảng trống bên trong */
+}
+
+/* Tiêu đề bảng cũng to và rõ hơn */
+.ranking-title {
+    font-size: 1.25rem !important;
+    /* To hơn một chút */
+    letter-spacing: 1.5px;
+    margin-bottom: 20px !important;
+}
+
+/* Tăng kích thước các dòng trong danh sách */
+#ranking li {
+    background: #ffffff !important;
+    margin-bottom: 12px !important;
+    /* Khoảng cách giữa các dòng rộng ra */
+    padding: 14px 18px !important;
+    /* Tăng padding để dòng to và dễ bấm hơn */
+    border-radius: 16px !important;
+    /* Bo tròn mềm mại hơn */
+
+    /* Hiệu ứng bóng đổ sang xịn mịn */
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.1) !important;
+    border: 1px solid rgba(255, 229, 236, 0.8) !important;
+
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi lướt qua dòng đó */
+#ranking li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.15) !important;
+    background: #fff9fa !important;
+}
+
+/* Làm cho Tên nàng thơ to và đậm nét hơn */
+#ranking b {
+    font-size: 15px !important;
+    /* To hơn cỡ 13px cũ */
+    color: #333 !important;
+    letter-spacing: 0.2px;
+}
+
+/* Làm cho số tiền nổi bật hẳn lên */
+.rank-money {
+    font-size: 15px !important;
+    color: #ff4da6 !important;
+    text-shadow: 0.5px 0.5px 0px rgba(255, 77, 166, 0.1);
+}
+
+/* Giờ giấc cũng rõ ràng hơn */
+#ranking small {
+    font-size: 11px !important;
+    margin-top: 4px;
+}
+
+/* ── Animations ────────────────────────────────────── */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px #ffd700, 0 0 20px #fff9c4;
+    }
+
+    to {
+        box-shadow: 0 0 20px #ff9800, 0 0 35px #ffd700;
+        transform: scale(1.07);
+    }
+}
+
+/* ── SweetAlert2 custom styles ─────────────────────── */
+.swal-pink-popup {
+    border-radius: 28px !important;
+    padding: 36px 28px 28px !important;
+    background: #ffffff !important;
+    box-shadow: 0 24px 60px rgba(255, 100, 160, .18), 0 4px 20px rgba(0, 0, 0, .06) !important;
+    border: 1.5px solid rgba(255, 150, 190, .20) !important;
+    font-family: inherit !important;
+}
+
+.swal-btn-confirm {
+    background: linear-gradient(135deg, #ff4da6, #ff79c6) !important;
+    border: none !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    letter-spacing: .5px !important;
+    padding: 12px 32px !important;
+    border-radius: 50px !important;
+    box-shadow: 0 6px 20px rgba(255, 77, 166, .35) !important;
+    transition: all .25s ease !important;
+}
+
+.swal-btn-confirm:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 28px rgba(255, 77, 166, .45) !important;
+}
+
+.swal-btn-cancel {
+    background: transparent !important;
+    border: 1.5px solid rgba(255, 77, 166, .35) !important;
+    color: #ff4da6 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 11px 28px !important;
+    border-radius: 50px !important;
+    transition: all .25s ease !important;
+}
+
+.swal-btn-cancel:hover {
+    background: rgba(255, 77, 166, .08) !important;
+}
+
+.swal2-loader {
+    border-color: #ff79c6 transparent #ff79c6 transparent !important;
+}
+
+/* Tùy chỉnh viền cho SweetAlert2 */
+.my-swal-border {
+    border: 2px solid #ff4d79 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 0 20px rgba(255, 77, 121, 0.3) !important;
+}
+
+/* Hiệu ứng rung nhẹ khi hiện thông báo lỗi */
+.swal2-show {
+    animation: swal2-show 0.3s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ── THIẾT KẾ THÔNG BÁO TRẠNG THÁI MỚI ────────────────── */
+.status-live {
+    padding: 25px 20px;
+    border-radius: 24px;
+    /* Bo tròn cực mạnh cho sang */
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Trạng thái Chờ xử lý (Pending) */
+.status-live.pending {
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid #ffe5ec;
+    /* Màu hồng pastel nhẹ */
+    color: #4a4a4a;
+}
+
+/* Hiệu ứng hào quang hồng nhạt chạy xung quanh khung */
+.status-live.pending::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 22px;
+    padding: 2px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.5;
+}
+
+/* Icon🧧 nhịp đập theo kiểu lễ hội */
+.pulse-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+    display: inline-block;
+    filter: drop-shadow(0 5px 10px rgba(255, 77, 109, 0.2));
+    animation: heartBeat 2s infinite ease-in-out;
+}
+
+/* Chữ Chúc mừng */
+.status-live p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 10px 0;
+    font-weight: 500;
+    color: #666;
+}
+
+/* Số tiền (Money) - Phải thật nổi bật */
+.money {
+    display: block;
+    font-size: 32px;
+    /* To và rõ */
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #ff4d6d, #d81b60);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+    letter-spacing: -1px;
+    text-shadow: none;
+    /* Dùng gradient thay vì shadow cũ cho hiện đại */
+}
+
+/* Chữ "Vui lòng đợi..." */
+.status-live p:last-child {
+    font-size: 13px;
+    color: #999;
+    font-style: italic;
+    border-top: 1px solid rgba(255, 77, 109, 0.1);
+    padding-top: 10px;
+}
+
+/* Animation Heartbeat mới nhẹ nhàng hơn */
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    10% {
+        transform: scale(1.15);
+    }
+
+    20% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.15);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animation Hiện hình mượt mà */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Hiệu ứng rung nhẹ cho icon đang chờ */
+.pulse-icon {
+    font-size: 40px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.money {
+    color: #e53935;
+    font-weight: 700;
+    font-size: 20px;
+    text-shadow: 0 0 6px rgba(229, 57, 53, 0.4);
+}
+
+/* ── THIẾT KẾ THÔNG BÁO THÀNH CÔNG (MÀU XANH) ────────────────── */
+.status-live.success {
+    background: rgba(240, 255, 244, 0.8) !important;
+    /* Nền xanh mint trong suốt */
+    border: 2px solid #b7eb8f !important;
+    /* Viền xanh lá nhạt */
+    color: #2b8a3e !important;
+    /* Chữ xanh đậm dễ đọc */
+    padding: 25px 20px;
+    border-radius: 24px;
+    margin: 20px auto;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.1);
+    animation: fadeInSlide 0.5s ease-out;
+}
+
+/* Hiệu ứng hào quang xanh chạy quanh khung */
+.status-live.success::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 22px;
+    padding: 2px;
+    background: linear-gradient(135deg, #52c41a, #b7eb8f);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.4;
+}
+
+/* Tiêu đề "Giao dịch thành công" */
+.status-live.success .title {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #1e7e34 !important;
+    /* Xanh lá đậm chuẩn */
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Nội dung mô tả bên dưới */
+.status-live.success .desc {
+    font-size: 15px !important;
+    color: #444 !important;
+    font-weight: 500;
+}
+
+/* Số tiền khi thành công (Money) - Đổi sang màu xanh ngọc rực rỡ */
+.status-live.success .money {
+    display: block;
+    font-size: 35px !important;
+    font-weight: 900;
+    background: linear-gradient(135deg, #23d5ab, #23a6d5) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin: 10px 0;
+    text-shadow: none !important;
+}
+
+/* Nút "Đã hiểu" hoặc "Quay lại" kiểu Outline xanh */
+.status-live.success .btn-outline {
+    border: 2px solid #52c41a !important;
+    color: #52c41a !important;
+    background: transparent !important;
+    border-radius: 50px;
+    padding: 8px 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.status-live.success .btn-outline:hover {
+    background: #52c41a !important;
+    color: #fff !important;
+    box-shadow: 0 5px 15px rgba(82, 196, 26, 0.3);
+}
+
+/* Icon check hoặc icon thành công nhịp đập xanh */
+.success-icon {
+    font-size: 50px;
+    color: #52c41a;
+    animation: heartBeat 2s infinite;
+    display: inline-block;
+}
+
+.status-live .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e53935;
+    margin: 5px 0;
+}
+
+.status-live .desc {
+    font-size: 16px;
+    color: #444;
+}
+
+.status-live .note {
+    font-size: 14px;
+    color: #ff5a8a;
+    margin-top: 5px;
+}
+
+.btn.btn-outline {
+    padding: 8px 18px;
+    border: 2px solid #e53935;
+    background: transparent;
+    color: #e53935;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn.btn-outline:hover {
+    background: #e53935;
+    color: white;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    14% {
+        transform: scale(1.1);
+    }
+
+    28% {
+        transform: scale(1);
+    }
+
+    42% {
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+}
+
+/* Đảm bảo font chữ trong Swal không bị lỗi */
+.swal-pink-popup * {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.swal-pink-popup [style*="Dancing Script"] {
+    font-family: 'Dancing Script', cursive !important;
+}
+
+/* Thiết kế nút Rút Tiền chuẩn Nàng Thơ */
+.btn-withdraw-toggle {
+    background: linear-gradient(135deg, #ff4da6 0%, #ff79c6 100%);
+    /* Màu hồng ngọt ngào */
+    color: #fff !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+    /* Bo tròn kiểu hiện đại */
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 77, 166, 0.3);
+    /* Đổ bóng hồng mịn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Khoảng cách giữa icon và chữ */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.btn-withdraw-toggle:hover {
+    transform: translateY(-3px) scale(1.02);
+    /* Nhích nhẹ lên trên */
+    box-shadow: 0 10px 25px rgba(255, 77, 166, 0.5);
+    background: linear-gradient(135deg, #ff79c6 0%, #ff4da6 100%);
+}
+
+/* Hiệu ứng lớp sáng lấp lánh chạy ngang qua nút */
+.btn-withdraw-toggle::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    transition: none;
+    animation: shine-bright 3s infinite;
+}
+
+@keyframes shine-bright {
+    0% {
+        left: -60%;
+    }
+
+    20% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
+}
+
+/* Hiệu ứng nhịp đập nhẹ nhàng để mời gọi nàng bấm */
+@keyframes pulse-soft {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 77, 166, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 77, 166, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 77, 166, 0);
+    }
+}
+
+.btn-withdraw-toggle {
+    animation: pulse-soft 2s infinite;
+}
+
+/* ══ FIX POPUP GIỮA MÀN HÌNH TUYỆT ĐỐI ══ */
+.swal2-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center !important;
+    /* căn dọc giữa */
+    justify-content: center !important;
+    /* căn ngang giữa */
+    padding: 0 !important;
+    /* xoá padding mặc định của SweetAlert2 */
+    overflow: hidden !important;
+}
+
+.swal2-container.swal2-center {
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+.swal2-popup {
+    position: relative !important;
+    top: unset !important;
+    left: unset !important;
+    transform: none !important;
+    margin: 0 auto !important;
+}
+
+body.swal2-shown {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+}
+
+html {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%) !important;
+    min-height: 100% !important;
+}
+
+body.swal2-shown {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%) !important;
+}
+
+.swal2-popup {
+    border-radius: 24px !important;
+}
+
+@media (max-width: 480px) {
+    .swal2-popup {
+        width: 88vw !important;
+        max-width: 340px !important;
+        padding: 24px 18px 20px !important;
+        font-size: 13px !important;
+    }
+
+    .swal2-title {
+        font-size: 1.1rem !important;
+    }
+
+    .swal2-html-container {
+        font-size: 13px !important;
+    }
+
+    .swal-btn-confirm,
+    .swal-btn-cancel {
+        font-size: 13px !important;
+        padding: 10px 22px !important;
+    }
+}

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng 8/3 💐</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div class="splash" id="splash">
+    <div class="splash-petals" id="splashPetals"></div>
+    <div class="splash-content">
+      <div class="splash-flowers">🌸 🌷 🌺</div>
+      <h1 class="splash-title">8 / 3</h1>
+      <p class="splash-sub">Ngày Quốc Tế Phụ Nữ</p>
+      <p class="splash-tagline">Dành tặng những người phụ nữ tuyệt vời</p>
+      <button class="splash-btn" id="splashBtn" onclick="enterSite()">
+        <span class="splash-btn-icon">🎵</span>
+        <span>Chúc Các Chị Em Phụ Nữ 8/3 Vui Vẻ!</span>
+      </button>
+      <p class="splash-hint">↑ Nhấn để bắt đầu</p>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="petals-container" id="petals"></div>
+
+  <div id="central-hint" class="central-hint">
+    <div class="hint-container">
+      <div class="hint-border-glow"></div>
+      <div class="hint-glass">
+        <span class="hint-icon">🎁</span>
+        <p class="hint-text">Nên dùng PC để có trải nghiệm tốt nhất nhé! <br></p>
+        <span class="action-text">Chạm vào <span class="highlight">8/3</span> để xem pháo hoa nhớ <3! ✨</span>
+            </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="subtitle">✦ Ngày Quốc Tế Phụ Nữ ✦</p>
+
+    <h1 class="date-badge">
+      <span onclick="goToGiftPage()">8/3</span>
+    </h1>
+
+    <p class="main-message">Gửi tặng những người phụ nữ <em>tuyệt vời nhất</em> trong server</p>
+
+    <div class="scroll-down" id="scrollDown" style="z-index: 9999; pointer-events: auto; cursor: pointer;"
+      onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'}); event.stopPropagation();">
+      <span>Khám phá quà tặng</span>
+      <div class="arrow-track">
+        <div class="arrow-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="section reveal" id="cards">
+    <h2 class="section-title">Dành riêng cho bạn</h2>
+    <div class="cards-grid">
+      <div class="card card-clickable" onclick="openSlideshow()">
+        <span class="card-icon">🖼️</span>
+        <h3 class="card-title">Ảnh 8/3</h3>
+        <p class="card-text">Bộ sưu tập những khoảnh khắc đẹp nhất dành tặng ngày đặc biệt.</p>
+        <div class="card-btn">Xem ảnh →</div>
+      </div>
+      <div class="card card-clickable" onclick="openWish()">
+        <span class="card-icon">💌</span>
+        <h3 class="card-title">Lời Chúc</h3>
+        <p class="card-text">Xem lời chúc cá nhân hóa mang tên bạn — ấm áp và đặc biệt.</p>
+        <div class="card-btn">Xem lời chúc →</div>
+      </div>
+      <a href="https://quiz.com/" style="text-decoration: none; color: inherit; display: block;">
+        <div class="card card-clickable">
+          <span class="card-icon">🎮</span>
+          <h3 class="card-title">Mini Game</h3>
+          <p class="card-text">Cùng nhau trả lời các câu hỏi — vui nhộn và đầy màu sắc ngày 8/3!</p>
+          <div class="card-btn">Chơi ngay →</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- GALLERY MODAL -->
+  <div class="modal" id="slideshowModal">
+    <div class="modal-overlay" onclick="closeModal('slideshowModal')"></div>
+    <div class="modal-box gallery-box">
+      <button class="modal-close" onclick="closeModal('slideshowModal')">✕</button>
+      <div class="gallery-header">
+        <span class="gallery-bunny">🐰</span>
+        <div class="gallery-title-group">
+          <p class="gallery-sub">HAPPY</p>
+          <p class="gallery-main-title">WOMEN'S DAY 8/3 🌸</p>
+        </div>
+        <span class="gallery-bunny-right">🐰❤️</span>
+      </div>
+      <div class="carousel-scene">
+        <div class="carousel-track" id="carouselTrack"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="carouselSlower()" title="Chậm hơn">🐢</button>
+        <span class="carousel-speed-label" id="speedLabel">Bình thường</span>
+        <button class="carousel-btn" onclick="carouselFaster()" title="Nhanh hơn">🐇</button>
+        <button class="carousel-btn" onclick="toggleCarousel()" id="playBtn" title="Tạm dừng">⏸</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-overlay" onclick="closeLightbox()"></div>
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <button class="lightbox-nav prev" onclick="lightboxNav(-1)">❮</button>
+      <img class="lightbox-img" id="lightboxImg" src="" alt="">
+      <button class="lightbox-nav next" onclick="lightboxNav(1)">❯</button>
+      <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+  </div>
+
+  <!-- WISH MODAL -->
+  <div class="modal" id="wishModal">
+    <div class="modal-overlay" onclick="closeModal('wishModal')"></div>
+    <div class="modal-box wish-box">
+      <button class="modal-close" onclick="closeModal('wishModal')">✕</button>
+      <div class="wish-header">
+        <div class="wish-flowers">💌 🌸 💐</div>
+        <h3 class="modal-title">Lời Chúc 8/3</h3>
+      </div>
+      <div class="wish-display">
+        <div class="wish-quote-mark">"</div>
+        <p class="wish-random-text" id="wishRandomText"></p>
+        <div class="wish-quote-mark close-quote">"</div>
+        <div class="wish-author" id="wishAuthor"></div>
+      </div>
+      <div class="wish-tag-row" id="wishTagRow"></div>
+      <div class="wish-action-row">
+        <button class="wish-shuffle-btn" onclick="shuffleWish()">🔀 Lời chúc khác</button>
+        <button class="wish-copy-btn2" onclick="copyRandomWish()">📋 Sao chép</button>
+      </div>
+      <div class="copy-toast" id="copyToast">✅ Đã sao chép!</div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-section reveal">
+    <p class="quote-text">"Phụ nữ là bông hoa đẹp nhất mà cuộc sống ban tặng cho thế gian."</p>
+    <p class="quote-author">— Tri ân ngày 8/3 —</p>
+  </div>
+
+  <!-- GIFT -->
+  <section class="gift-section reveal">
+    <div class="gift-box" onclick="goToGift()">
+      <span class="gift-ribbon">🎀 Quà tặng bí mật</span>
+      <div class="gift-emoji-wrapper">
+        <span class="gift-emoji">🧧</span>
+      </div>
+      <h3 class="gift-message">Chúc mừng 8 tháng 3!</h3>
+      <p class="gift-sub">
+        Hôm nay và mãi mãi, chúc bạn luôn hạnh phúc, rực rỡ và được yêu thương.
+      </p>
+      <div class="click-hint">✨ Nhấp vào đây để rút lì xì ✨</div>
+    </div>
+  </section>
+
+  <footer id="mainFooter">
+    Được tạo ra bởi
+    <a href="#" onclick="checkAdminPassword(event)">
+      <span>Khu Tự Trị GGD</span>
+    </a>
+    để tôn vinh những người phụ nữ phi thường
+  </footer>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player" id="musicPlayer">
+    <div class="music-info" id="musicInfo">
+      <div class="music-title-wrap">
+        <span class="music-title" id="musicTitle">Đang tải...</span>
+      </div>
+      <div class="music-controls">
+        <button class="mc-btn" onclick="prevTrack()" title="Bài trước">⏮</button>
+        <button class="mc-btn play-btn" id="musicBtn" onclick="toggleMusic()" title="Phát/Dừng">▶</button>
+        <button class="mc-btn" onclick="nextTrack()" title="Bài tiếp">⏭</button>
+      </div>
+      <div class="music-progress-wrap">
+        <span class="music-time" id="currentTime">0:00</span>
+        <div class="music-progress" id="progressBar" onclick="seekMusic(event)">
+          <div class="music-progress-fill" id="progressFill"></div>
+        </div>
+        <span class="music-time" id="totalTime">0:00</span>
+      </div>
+      <div class="music-volume-wrap">
+        <span id="volumeIcon">🔉</span>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="60"
+          oninput="setVolume(this.value)">
+        <span id="volumePct">60%</span>
+      </div>
+    </div>
+    <button class="music-disc-btn" id="musicDiscBtn" onclick="togglePanel()">
+      <span class="music-disc" id="musicDisc">🌸</span>
+    </button>
+  </div>
+
+  <audio id="bgMusic"></audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

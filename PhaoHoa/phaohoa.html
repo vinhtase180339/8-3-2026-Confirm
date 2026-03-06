@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pháo Hoa Nghệ Thuật 8/3 - Khu Tự Trị GGD</title>
+    <link rel="stylesheet" href="phaohoa.css">
+</head>
+
+<body>
+
+    <div id="overlay" onclick="startFireworks()">
+        <div class="btn">
+            Chào mừng ngày 8/3<br>
+            <span style="font-size: 14px;">(Chạm để khai mạc pháo hoa & nghe nhạc ✨)</span>
+            <br>
+            <small style="font-size: 10px; opacity: 0.6; display: block; margin-top: 10px;">Bản quyền: Khu Tự Trị
+                GGD</small>
+        </div>
+    </div>
+
+    <div class="watermark">© Khu Tự Trị GGD</div>
+
+    <canvas id="canvas"></canvas>
+
+    <audio id="bgMusic" src="../mp3/nhac83.mp3" loop preload="auto"></audio>
+    <audio id="sndPop" src="../mp3/bum.mp3" preload="auto"></audio>
+    <audio id="sndWhiz" src="../mp3/vut.mp3" preload="auto"></audio>
+    <audio id="sndXoet" src="../mp3/xoet.mp3" preload="auto"></audio>
+
+    <script src="phaohoa.js"></script>
+</body>
+
+</html>

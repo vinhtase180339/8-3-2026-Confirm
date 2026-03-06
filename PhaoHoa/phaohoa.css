@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body::before {
+    content: "KHU TỰ TRỊ GGD";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 8vw;
+    color: rgba(255, 255, 255, 0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 20px;
+    font-weight: bold;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    cursor: pointer;
+    color: #ff4d79;
+}
+
+.btn {
+    padding: 15px 40px;
+    border: 2px solid #ff4d79;
+    border-radius: 30px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(255, 77, 121, 0.4);
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    color: rgba(255, 77, 121, 0.5);
+    font-size: 12px;
+    z-index: 10;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    body::before {
+        display: none;
+    }
+}
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    /* Căn giữa bằng Flexbox */
+    display: flex;
+    flex-direction: column;
+    /* Xếp theo hàng dọc nếu có nhiều nội dung */
+    justify-content: center;
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+    /* Căn giữa theo chiều ngang */
+    z-index: 100;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: 2px solid #ff4d79;
+    border-radius: 30px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(255, 77, 121, 0.4);
+
+    /* Đảm bảo nội dung chữ bên trong cũng căn giữa */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: #ff4d79;
+
+    /* Giới hạn độ rộng trên mobile */
+    max-width: 80%;
+    white-space: normal;
+    /* Cho phép xuống dòng nếu chữ quá dài */
+}
+
+@media (max-width: 768px) {
+    .btn {
+        font-size: 15px;
+        /* Nhỏ lại một chút cho mobile */
+        padding: 10px 20px;
+        letter-spacing: 1px;
+    }
+}

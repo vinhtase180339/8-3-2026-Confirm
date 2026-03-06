@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Rút Lộc 8/3</title>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jsPDF (client-side PDF generation) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <canvas id="petals-canvas"></canvas>
+
+    <header>
+        <div class="header-badge">✦ Admin Portal ✦</div>
+        <h1>Quản lý Rút Lộc 8/3</h1>
+        <p>Danh sách người chơi chờ chuyển khoản</p>
+        <div class="header-rule"><span>🌸</span></div>
+    </header>
+
+    <section class="stats">
+        <div class="card-stat">
+            <h2 id="totalCount">0</h2>
+            <span>Tổng lượt</span>
+        </div>
+        <div class="card-stat success">
+            <h2 id="paidCount">0</h2>
+            <span>Đã chuyển</span>
+        </div>
+        <div class="card-stat warning">
+            <h2 id="pendingCount">0</h2>
+            <span>Chờ xử lý</span>
+        </div>
+    </section>
+
+    <section class="search-box">
+        <div class="search-wrap">
+            <input type="text" id="searchInput" placeholder="Tìm theo tên hoặc STK...">
+        </div>
+    </section>
+
+    <section>
+        <div id="adminList" class="admin-list">Đang tải dữ liệu...</div>
+    </section>
+
+    <section class="history-section">
+        <div class="history-header">
+            <div class="history-title-wrap">
+                <h2 class="history-title">📜 Lịch Sử Giao Dịch</h2>
+                <span class="history-subtitle">Các lệnh đã được xử lý thành công</span>
+            </div>
+            <div class="history-controls">
+                <div class="history-search-wrap">
+                    <input type="text" id="historySearch" placeholder="Tìm trong lịch sử...">
+                </div>
+                <button class="btn-export" onclick="exportCSV()">
+                    <span>⬇ Xuất CSV</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="history-table-wrap">
+            <table class="history-table" id="historyTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Mã</th>
+                        <th>Ngân hàng</th>
+                        <th>Số tài khoản</th>
+                        <th>Số tiền</th>
+                        <th>Thời gian</th>
+                        <th>Trạng thái</th>
+                        <th>Phiếu</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <tr>
+                        <td colspan="8" class="history-loading">
+                            <span class="spinner"></span> Đang tải lịch sử...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+        <div class="history-total" id="historyTotal"></div>
+    </section>
+
+    <footer>© 2026 · Mini Game 8/3 🌸 Chúc mừng ngày Quốc tế Phụ nữ</footer>
+
+    <script src="pdf-receipt.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
